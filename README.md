@@ -10,7 +10,7 @@ Vervollständigen Sie das Programm indem Sie diese Schritte abarbeiten:
 	- Gesucht wird nur nach dem Namen des AdressEintrag
 	- Während der Suche soll die GUI nicht blockieren
 	- Die Suche soll abgebrochen werden können
-	- Zeigen Sie das Ergebnis der Suche in den Feldern an
+	- Zeigen Sie das die Werte des ersten Ergebnis der Suche in den Feldern an
 - Implementieren Sie ein neues Form zum Erfassen neuer Einträge:
 	- Zu den Einträgen sollen alle Daten der Anzeige erfasst werden
 	- Die Erfassung soll abgebrochen werden können
