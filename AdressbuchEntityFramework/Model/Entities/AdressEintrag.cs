@@ -10,7 +10,5 @@ internal class AdressEintrag
 
    public string TelefonNummer { get; set; } = string.Empty;
 
-   public int AdressId { get; set; }
-
-   public Adressen Adressen { get; set; }
+   public virtual ICollection<Adressen> Adressen { get; set; }
 }

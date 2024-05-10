@@ -11,13 +11,6 @@ namespace AdressbuchEntityFramework.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "AdressId",
-                table: "AdressEinträge",
-                type: "INTEGER",
-                nullable: false,
-                defaultValue: 0);
-
             migrationBuilder.AddColumn<DateTime>(
                 name: "Geburtstag",
                 table: "AdressEinträge",
@@ -38,44 +31,34 @@ namespace AdressbuchEntityFramework.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                    Straße = table.Column<string>(type: "TEXT", nullable: false),
+                    Hausnummer = table.Column<string>(type: "TEXT", nullable: false),
+                    Postleitzahl = table.Column<string>(type: "TEXT", nullable: false),
+                    Stadt = table.Column<string>(type: "TEXT", nullable: false),
+                    AdressEintragId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Adressen", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Adressen_AdressEinträge_AdressEintragId",
+                        column: x => x.AdressEintragId,
+                        principalTable: "AdressEinträge",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AdressEinträge_AdressId",
-                table: "AdressEinträge",
-                column: "AdressId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AdressEinträge_Adressen_AdressId",
-                table: "AdressEinträge",
-                column: "AdressId",
-                principalTable: "Adressen",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                name: "IX_Adressen_AdressEintragId",
+                table: "Adressen",
+                column: "AdressEintragId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AdressEinträge_Adressen_AdressId",
-                table: "AdressEinträge");
-
             migrationBuilder.DropTable(
                 name: "Adressen");
-
-            migrationBuilder.DropIndex(
-                name: "IX_AdressEinträge_AdressId",
-                table: "AdressEinträge");
-
-            migrationBuilder.DropColumn(
-                name: "AdressId",
-                table: "AdressEinträge");
 
             migrationBuilder.DropColumn(
                 name: "Geburtstag",

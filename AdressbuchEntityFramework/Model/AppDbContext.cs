@@ -15,10 +15,10 @@ internal class AppDbContext : DbContext
 
    protected override void OnModelCreating(ModelBuilder modelBuilder)
    {
-      modelBuilder.Entity<Adressen>()
-         .HasMany(x => x.AdressEintraege)
-         .WithOne(x => x.Adressen)
+      modelBuilder.Entity<AdressEintrag>()
+         .HasMany(x => x.Adressen)
+         .WithOne(x => x.AdressEintrag)
          .HasPrincipalKey(x => x.Id)
-         .HasForeignKey(x => x.AdressId);
+         .HasForeignKey(x => x.AdressEintragId);
    }
 }

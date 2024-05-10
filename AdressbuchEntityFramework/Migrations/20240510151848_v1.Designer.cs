@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdressbuchEntityFramework.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240510144513_v1")]
+    [Migration("20240510151848_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -24,9 +24,6 @@ namespace AdressbuchEntityFramework.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AdressId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Geburtstag")
@@ -42,8 +39,6 @@ namespace AdressbuchEntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdressId");
-
                     b.ToTable("AdressEinträge");
                 });
 
@@ -53,29 +48,46 @@ namespace AdressbuchEntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<int>("AdressEintragId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Hausnummer")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Postleitzahl")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Stadt")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Straße")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AdressEintragId");
+
                     b.ToTable("Adressen");
-                });
-
-            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.AdressEintrag", b =>
-                {
-                    b.HasOne("AdressbuchEntityFramework.Model.Entities.Adressen", "Adressen")
-                        .WithMany("AdressEintraege")
-                        .HasForeignKey("AdressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Adressen");
                 });
 
             modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adressen", b =>
                 {
-                    b.Navigation("AdressEintraege");
+                    b.HasOne("AdressbuchEntityFramework.Model.Entities.AdressEintrag", "AdressEintrag")
+                        .WithMany("Adressen")
+                        .HasForeignKey("AdressEintragId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdressEintrag");
+                });
+
+            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.AdressEintrag", b =>
+                {
+                    b.Navigation("Adressen");
                 });
 #pragma warning restore 612, 618
         }
