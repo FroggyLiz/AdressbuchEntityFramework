@@ -39,7 +39,7 @@ namespace AdressbuchEntityFramework.Migrations
                     b.ToTable("AdressEinträge");
                 });
 
-            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adressen", b =>
+            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adresse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace AdressbuchEntityFramework.Migrations
                     b.ToTable("Adressen");
                 });
 
-            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adressen", b =>
+            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adresse", b =>
                 {
                     b.HasOne("AdressbuchEntityFramework.Model.Entities.AdressEintrag", "AdressEintrag")
                         .WithMany("Adressen")

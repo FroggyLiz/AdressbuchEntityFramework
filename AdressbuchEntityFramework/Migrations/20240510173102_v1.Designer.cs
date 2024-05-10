@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdressbuchEntityFramework.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240510151848_v1")]
+    [Migration("20240510173102_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace AdressbuchEntityFramework.Migrations
                     b.ToTable("AdressEinträge");
                 });
 
-            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adressen", b =>
+            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adresse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +74,7 @@ namespace AdressbuchEntityFramework.Migrations
                     b.ToTable("Adressen");
                 });
 
-            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adressen", b =>
+            modelBuilder.Entity("AdressbuchEntityFramework.Model.Entities.Adresse", b =>
                 {
                     b.HasOne("AdressbuchEntityFramework.Model.Entities.AdressEintrag", "AdressEintrag")
                         .WithMany("Adressen")

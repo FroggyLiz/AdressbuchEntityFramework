@@ -6,7 +6,7 @@ namespace AdressbuchEntityFramework.Model;
 internal class AppDbContext : DbContext
 {
    public DbSet<AdressEintrag> AdressEinträge { get; set; }
-   public DbSet<Adressen> Adressen { get; set; }
+   public DbSet<Adresse> Adressen { get; set; }
 
    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
    {

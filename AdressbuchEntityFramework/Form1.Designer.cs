@@ -174,6 +174,7 @@
          neuEintragButton.TabIndex = 4;
          neuEintragButton.Text = "Neuer Eintrag";
          neuEintragButton.UseVisualStyleBackColor = true;
+         neuEintragButton.Click += neuEintragButton_Click;
          // 
          // Form1
          // 
